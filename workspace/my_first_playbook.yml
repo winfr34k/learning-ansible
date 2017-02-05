@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  tasks:
+      - name: Create an empty file in /etc
+        file:
+            path: /etc/empty
+            state: touch
+  
+      - name: Remove the empty file
+        file:
+            path: /etc/empty
+            state: absent

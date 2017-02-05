@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  roles:
+    - webserver
+    - ngpestelos.mysql
+#  vars:
+#    company_name: QuarkInside

@@ -1,0 +1,36 @@
+---
+
+- name: Install the Apache webserver
+  apt:
+    name: apache2
+    state: present
+
+- name: Copy the company logo to the webroot
+  copy:
+    src: logo.png
+    dest: /var/www/html/logo.png
+    owner: www-data
+    group: www-data
+
+- name: Change the defeault web page to be in compliance with the company
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+
+- name: Create a web page for each employee
+  template:
+    src: employee.html.j2
+    dest: "/var/www/html/{{ item.name | lower }}.html"
+    owner: www-data
+    group: www-data
+  with_items:
+    - name: "Bob"
+      telephone_number: "456"
+
+    - name: "Alice"
+      telephone_number: "789"
+
+    - name: "Charleene"
+      telephone_number: "1012"

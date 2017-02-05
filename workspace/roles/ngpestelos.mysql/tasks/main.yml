@@ -1,0 +1,7 @@
+---
+- name: Install mysql
+  apt: name={{ item }} state=latest
+  with_items:
+    - mysql-server
+    - libmysqlclient-dev
+    - python-mysqldb
